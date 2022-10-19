@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../../Task';
 import { TaskService } from 'src/app/services/task.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-tasks',
@@ -10,8 +11,9 @@ import { TaskService } from 'src/app/services/task.service';
 export class TasksComponent implements OnInit {
 
   tasks: Task[] = [];
+  title: string = 'Task Tracker';
 
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.taskService.getTasks().subscribe((tasks) => this.tasks = tasks);

@@ -14,7 +14,7 @@ const httpOptions = {
 })
 export class TaskService {
 
-  private apiUrl = 'https://localhost:5001/api/user';
+  private apiUrl = 'https://localhost:5001/api/tasks';
 
   constructor(private http: HttpClient) { }
 
@@ -35,4 +35,5 @@ export class TaskService {
   addTask(task: Task): Observable<Task> {
     return this.http.post<Task>(this.apiUrl, task);
   }
+
 }

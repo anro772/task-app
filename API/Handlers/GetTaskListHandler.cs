@@ -6,20 +6,25 @@ using API.Data;
 using API.Entities;
 using API.Queries;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using static API.Queries.GetTasks;
 
 namespace API.Handlers
 {
     public class GetTaskListHandler : IRequestHandler<GetTaskListQuery, List<AppUser>>
     {
+        public DataContext _context { get; }
         private readonly IDataAccess _dataAccess;
-        public GetTaskListHandler(IDataAccess dataAccess)
+
+        public GetTaskListHandler(DataContext context)
         {
-            _dataAccess = dataAccess;
+            this._context = context;
         }
 
-        public Task<List<AppUser>> Handle(GetTaskListQuery request, CancellationToken cancellationToken)
+        public async Task<List<AppUser>> Handle(GetTaskListQuery request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(_dataAccess.GetTasks());
+            var tasks = await _context.Tasks.ToListAsync();
+            return tasks;
         }
     }
 }

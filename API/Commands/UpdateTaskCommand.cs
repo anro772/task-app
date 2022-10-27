@@ -7,9 +7,9 @@ using MediatR;
 
 namespace API.Commands
 {
-    public class AddTask
+    public class UpdateTask
     {
-        public record AddTaskCommand(AppUser Task) : IRequest<AppUser>;
+        public record UpdateTaskCommand(AppUser Task, int id) : IRequest<AppUser>;
 
         public record Response(AppUser Task);
     }

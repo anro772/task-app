@@ -7,6 +7,10 @@ using MediatR;
 
 namespace API.Queries
 {
-    public record GetTaskListQuery() : IRequest<List<AppUser>>;
+    public class GetTasks
+    {
+        public record GetTaskListQuery() : IRequest<List<AppUser>>;
 
+        public record Response(List<AppUser> Tasks);
+    }
 }

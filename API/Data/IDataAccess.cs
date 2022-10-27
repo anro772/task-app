@@ -11,5 +11,6 @@ namespace API.Data
         List<AppUser> GetTasks();
         AppUser AddUser(AppUser appUser);
         AppUser GetTaskById(int id);
+       // AppUser AddUser(object appUser);
     }
 }

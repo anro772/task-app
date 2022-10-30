@@ -6,32 +6,23 @@ using API.Commands;
 using API.Data;
 using API.Entities;
 using MediatR;
-using static API.Commands.AddTask;
+using Microsoft.EntityFrameworkCore;
 using static API.Commands.DeleteTask;
 
 namespace API.Handlers
 {
     public class DeleteTaskHandler : IRequestHandler<DeleteTaskCommand, AppUser>
     {
-        public DataContext _context { get; }
         private readonly IDataAccess _dataAccess;
 
-        public DeleteTaskHandler(DataContext context)
+        public DeleteTaskHandler(IDataAccess dataAccess)
         {
-            this._context = context;
+            this._dataAccess = dataAccess;
         }
 
         public Task<AppUser> Handle(DeleteTaskCommand request, CancellationToken cancellationToken)
         {
-            var task = _context.Tasks.FirstOrDefault(x => x.Id == request.id);
-
-            if (task != null)
-            {
-                _context.Tasks.Remove(task);
-                _context.SaveChanges();
-            }
-
-            return Task.FromResult(task);
+            return Task.FromResult(_dataAccess.DeleteTask(request.Id));
         }
     }
 }

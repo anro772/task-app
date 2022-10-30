@@ -15,9 +15,9 @@ namespace API.Handlers
         public DataContext _context { get; }
         private readonly IDataAccess _dataAccess;
 
-        public AddTaskHandler(DataContext context)
+        public AddTaskHandler(IDataAccess dataAccess)
         {
-            this._context = context;
+            this._dataAccess = dataAccess;
         }
 
         public Task<AppUser> Handle(AddTaskCommand request, CancellationToken cancellationToken)
@@ -29,11 +29,7 @@ namespace API.Handlers
                 Day = request.Task.Day,
                 Reminder = request.Task.Reminder
             };
-
-            _context.Tasks.Add(task);
-            _context.SaveChanges();
-
-            return Task.FromResult(task);
+            return Task.FromResult(_dataAccess.AddTask(task));
         }
     }
 }

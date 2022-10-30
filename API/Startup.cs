@@ -35,6 +35,8 @@ namespace API
             services.AddControllers();
             services.AddCors();
 
+            //  services.AddMediatR(typeof(DataAccess).Assembly);
+            // services.AddScoped<IDataAccess, DataAccess>();
             services.AddMediatR(typeof(DataAccess).Assembly);
             services.AddScoped<IDataAccess, DataAccess>();
 

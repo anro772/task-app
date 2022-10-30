@@ -13,18 +13,18 @@ namespace API.Handlers
 {
     public class GetTaskListHandler : IRequestHandler<GetTaskListQuery, List<AppUser>>
     {
-        public DataContext _context { get; }
         private readonly IDataAccess _dataAccess;
 
-        public GetTaskListHandler(DataContext context)
+        public GetTaskListHandler(IDataAccess dataAccess)
         {
-            this._context = context;
+            this._dataAccess = dataAccess;
         }
 
-        public async Task<List<AppUser>> Handle(GetTaskListQuery request, CancellationToken cancellationToken)
+        public Task<List<AppUser>> Handle(GetTaskListQuery request, CancellationToken cancellationToken)
         {
-            var tasks = await _context.Tasks.ToListAsync();
-            return tasks;
+            //  var tasks = await _context2.Tasks.ToListAsync();
+            // return tasks;
+            return Task.FromResult(_dataAccess.GetTasks());
         }
     }
 }

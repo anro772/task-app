@@ -9,8 +9,8 @@ namespace API.Data
     public interface IDataAccess
     {
         List<AppUser> GetTasks();
-        AppUser AddUser(AppUser appUser);
+        AppUser AddTask(AppUser appUser);
         AppUser GetTaskById(int id);
-       // AppUser AddUser(object appUser);
+        AppUser DeleteTask(int id);
     }
 }

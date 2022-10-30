@@ -9,7 +9,7 @@ namespace API.Commands
 {
     public class DeleteTask
     {
-        public record DeleteTaskCommand(int id) : IRequest<AppUser>;
+        public record DeleteTaskCommand(int Id) : IRequest<AppUser>;
 
         public record Response(AppUser Task);
     }

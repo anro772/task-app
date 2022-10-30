@@ -13,20 +13,15 @@ namespace API.Handlers
 {
     public class GetTaskByIdHandler : IRequestHandler<GetTaskByIdQuery, AppUser>
     {
-        public DataContext _context { get; }
         private readonly IDataAccess _dataAccess;
 
-        public GetTaskByIdHandler(DataContext _context)
+        public GetTaskByIdHandler(IDataAccess dataAccess)
         {
-            this._context = _context;
+            this._dataAccess = dataAccess;
         }
-
-        public async Task<AppUser> Handle(GetTaskByIdQuery request, CancellationToken cancellationToken)
+        public Task<AppUser> Handle(GetTaskByIdQuery request, CancellationToken cancellationToken)
         {
-            var task = await _context.Tasks.FirstOrDefaultAsync(x => x.Id == request.Id);
-            return task;
-
-            // return Task.FromResult(_dataAccess.GetTaskById(request.Id));
+            return Task.FromResult(_dataAccess.GetTaskById(request.Id));
         }
     }
 }

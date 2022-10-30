@@ -7,22 +7,24 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {
-    public class DataAccess : IDataAccess
+    public class DataAccess : DataContext, IDataAccess
     {
         private List<AppUser> _tasks = new();
 
-        public DataAccess()
+        public DataAccess(DbContextOptions options) : base(options)
         {
-            // _tasks = Tasks.ToList();
+            _tasks = Tasks.ToList<AppUser>();
         }
 
         public List<AppUser> GetTasks()
         {
-            return _tasks;
+            return Tasks.ToList<AppUser>();
         }
 
-        public AppUser AddUser(AppUser appUser)
+        public AppUser AddTask(AppUser appUser)
         {
+            Tasks.Add(appUser);
+            SaveChanges();
             _tasks.Add(appUser);
             return appUser;
         }
@@ -30,6 +32,19 @@ namespace API.Data
         public AppUser GetTaskById(int id)
         {
             return _tasks.FirstOrDefault(x => x.Id == id);
+        }
+
+        public AppUser DeleteTask(int id)
+        {
+            var task = _tasks.FirstOrDefault(x => x.Id == id);
+
+            if (task != null)
+            {
+                _tasks.Remove(task);
+            }
+            Tasks.Remove(task);
+            SaveChanges();
+            return task;
         }
     }
 }

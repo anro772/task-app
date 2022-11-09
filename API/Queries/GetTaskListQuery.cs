@@ -11,6 +11,5 @@ namespace API.Queries
     {
         public record GetTaskListQuery() : IRequest<List<AppUser>>;
 
-        public record Response(List<AppUser> Tasks);
     }
 }

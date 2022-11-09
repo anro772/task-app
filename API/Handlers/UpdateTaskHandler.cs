@@ -14,27 +14,23 @@ namespace API.Handlers
 {
     public class UpdateTaskHandler : IRequestHandler<UpdateTaskCommand, AppUser>
     {
-        public DataContext _context { get; }
         private readonly IDataAccess _dataAccess;
 
-        public UpdateTaskHandler(DataContext context)
+        public UpdateTaskHandler(IDataAccess dataAccess)
         {
-            this._context = context;
+            this._dataAccess = dataAccess;
         }
 
         public Task<AppUser> Handle(UpdateTaskCommand request, CancellationToken cancellationToken)
         {
-            var task = _context.Tasks.FirstOrDefault(x => x.Id == request.id);
-
-            if (task != null)
+            var task = new AppUser
             {
-                task.Text = request.Task.Text;
-                task.Day = request.Task.Day;
-                task.Reminder = request.Task.Reminder;
-                _context.SaveChanges();
-            }
-
-            return Task.FromResult(task);
+                //Id = request.Task.Id,
+                Text = request.Task.Text,
+                Day = request.Task.Day,
+                Reminder = request.Task.Reminder
+            };
+            return Task.FromResult(_dataAccess.UpdateTask(task, request.id));
         }
     }
 }

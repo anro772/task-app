@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "bW0OLH36BVrfN/vuiAlooD4FKyOnWry/T0ZLTHhOhEFfY+kwsEUjKmFaJuh/IYGQwKkQr5O9bk7XVP4SYH/G6Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\stefa\\Desktop\\stuff\\task-app\\build.proj",
+  "expectedPackageFiles": [
+    "C:\\Users\\stefa\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.2\\microsoft.netframework.referenceassemblies.1.0.2.nupkg.sha512",
+    "C:\\Users\\stefa\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net45\\1.0.2\\microsoft.netframework.referenceassemblies.net45.1.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

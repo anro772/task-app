@@ -11,6 +11,6 @@ namespace API.Commands
     {
         public record AddTaskCommand(AppUser Task) : IRequest<AppUser>;
 
-        public record Response(AppUser Task);
+
     }
 }

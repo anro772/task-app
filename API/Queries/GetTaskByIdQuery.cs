@@ -11,9 +11,5 @@ namespace API.Queries
     public static class GetTask
     {
         public record GetTaskByIdQuery(int Id) : IRequest<AppUser>;
-
-        public record Response(int Id, string Text, string Day, bool Reminder);
-
     }
-
 }

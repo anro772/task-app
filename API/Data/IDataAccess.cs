@@ -12,5 +12,6 @@ namespace API.Data
         AppUser AddTask(AppUser appUser);
         AppUser GetTaskById(int id);
         AppUser DeleteTask(int id);
+        AppUser UpdateTask(AppUser task, int id);
     }
 }

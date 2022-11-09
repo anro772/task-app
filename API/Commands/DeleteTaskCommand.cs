@@ -11,6 +11,5 @@ namespace API.Commands
     {
         public record DeleteTaskCommand(int Id) : IRequest<AppUser>;
 
-        public record Response(AppUser Task);
     }
 }

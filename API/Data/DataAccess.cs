@@ -46,5 +46,20 @@ namespace API.Data
             SaveChanges();
             return task;
         }
+
+        public AppUser UpdateTask(AppUser task, int id)
+        {
+            var taskToUpdate = _tasks.FirstOrDefault(x => x.Id == id);
+
+            if (taskToUpdate != null)
+            {
+                taskToUpdate.Day = task.Day;
+                taskToUpdate.Text = task.Text;
+                taskToUpdate.Reminder = task.Reminder;
+            }
+            Tasks.Update(taskToUpdate);
+            SaveChanges();
+            return taskToUpdate;
+        }
     }
 }

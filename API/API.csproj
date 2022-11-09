@@ -4,9 +4,13 @@
     <TargetFramework>net6.0</TargetFramework>
     <!--Nullable>enable</Nullable-->
     <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspNetCore.Mvc.HttpActionResults" Version="0.3.0" />
+    <PackageReference Include="AspNetCore.Mvc.HttpActionResults.ClientError" Version="0.3.0" />
     <PackageReference Include="MediatR" Version="11.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
@@ -16,8 +20,10 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.10" />
+    <PackageReference Include="Moq.AutoMock" Version="3.4.0" />
+    <PackageReference Include="xunit" Version="2.4.2" />
 
-    
+
   </ItemGroup>
 
 </Project>

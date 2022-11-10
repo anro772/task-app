@@ -11,5 +11,13 @@ namespace API.Entities
         public string Text { get; set; }
         public string Day { get; set; }
         public bool Reminder { get; set; }
+
+        public AppUser()
+        {
+            this.Id = 0;
+            this.Text = "";
+            this.Day = "";
+            this.Reminder = false;
+        }
     }
 }

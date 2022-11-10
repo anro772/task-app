@@ -30,13 +30,14 @@ namespace API.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet]
+        [HttpGet]   //for unit testing make new controller /api/unitTasks
         public ActionResult<Task<List<AppUser>>> GetTasks()
         {
             Task<List<AppUser>> tasks = _mediator.Send(new GetTaskListQuery());
             if (tasks.Result.Count == 0)
                 return NotFound();
-            return tasks;
+            ActionResult<List<AppUser>> tasksOut = tasks.Result;
+            return Ok(tasksOut);
         }
 
         [HttpGet("{id}")]
@@ -45,26 +46,36 @@ namespace API.Controllers
             Task<AppUser> task = _mediator.Send(new GetTask.GetTaskByIdQuery(id));
             if (task.Result == null)
                 return NotFound();
-            return task;
+            ActionResult<AppUser> taskOut = task.Result;
+            return Ok(taskOut);
         }
 
         [HttpPost]
         public ActionResult<Task<AppUser>> AddTask([FromBody] AppUser task)
         {
-            return _mediator.Send(new AddTaskCommand(task));
+            Task<AppUser> taskOut = _mediator.Send(new AddTaskCommand(task));
+            return Ok(taskOut);
         }
+
+
 
         [HttpDelete("{id}")]
 
-        public async Task<AppUser> DeleteTask(int id)
+        public ActionResult<Task<AppUser>> DeleteTask(int id)
         {
-            return await _mediator.Send(new DeleteTaskCommand(id));
+            Task<AppUser> task = _mediator.Send(new DeleteTaskCommand(id));
+            if (task.Result == null)
+                return NotFound();
+            return Ok(task.Result);
         }
 
         [HttpPut("{id}")]
-        public async Task<AppUser> UpdateTask([FromBody] AppUser task, int id)
+        public ActionResult<Task<AppUser>> UpdateTask([FromBody] AppUser task, int id)
         {
-            return await _mediator.Send(new UpdateTaskCommand(task, id));
+            Task<AppUser> taskOut = _mediator.Send(new UpdateTaskCommand(task, id));
+            if (taskOut.Result == null)
+                return NotFound();
+            return Ok(taskOut.Result);
         }
     }
 }

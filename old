@@ -1,0 +1,5 @@
+// [HttpPost]
+//         public ActionResult<Task<AppUser>> AddTask([FromBody] AppUser task)
+//         {
+//             return _mediator.Send(new AddTaskCommand(task));
+//         }

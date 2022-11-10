@@ -6,3 +6,6 @@ global using Microsoft.AspNetCore.Mvc;
 global using Moq;
 global using static API.Queries.GetTask;
 global using static API.Queries.GetTasks;
+global using static API.Commands.AddTask;
+global using static API.Commands.DeleteTask;
+global using static API.Commands.UpdateTask;

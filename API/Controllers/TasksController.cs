@@ -57,10 +57,7 @@ namespace API.Controllers
             return Ok(taskOut);
         }
 
-
-
         [HttpDelete("{id}")]
-
         public ActionResult<Task<AppUser>> DeleteTask(int id)
         {
             Task<AppUser> task = _mediator.Send(new DeleteTaskCommand(id));

@@ -15,6 +15,7 @@ public class TasksControllerTests
         // Assert
         Assert.IsType<NotFoundResult>(result.Result);
     }
+
     [Fact]
     public void GetTasks_WithUnexistingItems_ReturnsNotFound()
     {
@@ -28,6 +29,7 @@ public class TasksControllerTests
         // Assert
         Assert.IsType<NotFoundResult>(result.Result);
     }
+
     [Fact]
     public void AddTask_WithValidItem_ReturnsOk()
     {
@@ -41,6 +43,7 @@ public class TasksControllerTests
         // Assert
         Assert.IsType<OkObjectResult>(result.Result);
     }
+
     [Fact]
     public void DeleteTask_WithValidItem_ReturnsOk()
     {
@@ -54,6 +57,7 @@ public class TasksControllerTests
         // Assert
         Assert.IsType<OkObjectResult>(result.Result);
     }
+
     [Fact]
     public void DeleteTask_WithUnexistingItem_ReturnsNotFound()
     {
@@ -67,6 +71,7 @@ public class TasksControllerTests
         // Assert
         Assert.IsType<NotFoundResult>(result.Result);
     }
+
     [Fact]
     public void UpdateTask_WithValidItem_ReturnsOk()
     {

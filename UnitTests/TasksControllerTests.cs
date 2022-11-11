@@ -11,13 +11,14 @@ public class TasksControllerTests
             .ReturnsAsync((AppUser)null);
         var controller = new TasksController(mockMediator.Object);
         // Act
-        var result = controller.GetTask(1);
+        var result = controller.GetTask(2);
+        Console.WriteLine(result.Result);
         // Assert
         Assert.IsType<NotFoundResult>(result.Result);
     }
 
     [Fact]
-    public void GetTasks_WithUnexistingItems_ReturnsNotFound()
+    public void GetTasks_WithExistingItems_ReturnsOk()
     {
         // Arrange
         var mockMediator = new Mock<IMediator>();
@@ -27,7 +28,7 @@ public class TasksControllerTests
         // Act
         var result = controller.GetTasks();
         // Assert
-        Assert.IsType<NotFoundResult>(result.Result);
+        Assert.IsType<OkObjectResult>(result.Result);
     }
 
     [Fact]

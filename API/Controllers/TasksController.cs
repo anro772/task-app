@@ -30,24 +30,22 @@ namespace API.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet]   //for unit testing make new controller /api/unitTasks
+        [HttpGet]
         public ActionResult<Task<List<AppUser>>> GetTasks()
         {
-            Task<List<AppUser>> tasks = _mediator.Send(new GetTaskListQuery());
-            if (tasks.Result.Count == 0)
+            ActionResult<Task<List<AppUser>>> tasks = _mediator.Send(new GetTaskListQuery());
+            if (tasks.Value.Result == null)
                 return NotFound();
-            ActionResult<List<AppUser>> tasksOut = tasks.Result;
-            return Ok(tasksOut);
+            return Ok(tasks);
         }
 
         [HttpGet("{id}")]
         public ActionResult<Task<AppUser>> GetTask(int id)
         {
-            Task<AppUser> task = _mediator.Send(new GetTask.GetTaskByIdQuery(id));
-            if (task.Result == null)
+            ActionResult<Task<AppUser>> task = _mediator.Send(new GetTask.GetTaskByIdQuery(id));
+            if (task.Value.Result == null)
                 return NotFound();
-            ActionResult<AppUser> taskOut = task.Result;
-            return Ok(taskOut);
+            return Ok(task);
         }
 
         [HttpPost]
